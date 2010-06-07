@@ -1,3 +1,7 @@
+LAST PUPPETRUN
+
+Displays the last successful puppet run for all your nodes. 
+
 See 
 
   http://blog.absurd.li/2010/06/07/a_small_tool_for_puppet.html
