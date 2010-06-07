@@ -1,0 +1,105 @@
+#!/usr/bin/ruby
+
+require 'rubygems'
+require 'active_support'
+require 'text/highlight'
+
+String.highlighter = Text::ANSIHighlighter.new
+
+# Run this on the puppet master as root to retrieve when puppet ran last 
+# on what host. 
+
+class PuppetRuns
+  attr_reader :last
+  def initialize
+    @last = {}
+  end
+  
+  alias run ` #`
+  
+  # Retrieves a list of all hosts that are controlled by puppet (puppetca -la)
+  # 
+  def controlled_hosts
+    run(%Q{puppetca -la}).
+      lines.
+      map { |line| line.chomp[2..-1] }
+  end
+
+  # Iterates through the current puppet master log, yielding timestamp and the
+  # rest of the log line to the caller. 
+  #
+  def each_log_line
+    File.readlines('/var/log/syslog').each do |line|
+      line.chomp!
+      
+      timestamp, rest = Time.parse(line), line[16..-1]
+      yield [timestamp, rest]
+    end
+  end
+  
+  # Checks to see if a given line might be a successful puppet run. If yes, 
+  # extracts the host name from that. Otherwise returns nil. 
+  #
+  def parse_last_run(str)
+    if md=str.match(/puppet puppetmasterd\[\d+\]: Compiled catalog for (.+) in .* seconds/)
+      md.captures.first
+    end
+  end
+  
+  # Iterates through the current puppet master log, yielding only entries that
+  # relate to successful puppet runs.
+  #
+  def each_successful_run
+    each_log_line do |(timestamp, rest)|
+      if host=parse_last_run(rest)
+        yield [timestamp, host]
+      end
+    end
+  end
+
+  # Stores the tuple :hostname, :last_run
+  class LastRun < Struct.new(:name, :last_run); 
+    def time_ago_in_minutes(now=Time.now)
+      (now - last_run) / 60
+    end
+  end
+  
+  # Reads the current puppet master logfile, storing information about when 
+  # puppet ran for each host. 
+  #
+  def parse_logfile
+    each_successful_run do |timestamp, host|
+      last[host] = LastRun.new(host, timestamp)
+    end
+  end
+end
+
+
+if $0 == __FILE__
+  runs = PuppetRuns.new
+  runs.parse_logfile
+  
+  hosts = runs.controlled_hosts
+  
+  # output all hosts that have a last run time
+  puts "Hostname ----------- Last puppet run (minutes ago) -------------------"
+  runs.last.values.
+    sort_by(&:last_run).
+    reverse.
+    each do |last_run|
+      print "%-20s" % last_run.name
+      
+      puts(if (time_ago=last_run.time_ago_in_minutes.to_i) > 31
+        "#{time_ago}".bold.red
+      else
+        "#{time_ago}".green
+      end)
+    end
+  puts 
+  
+  missing = (hosts - runs.last.keys)
+  unless missing.empty?
+    puts "Hosts that puppet doesn't seem to run on -(BAD!)--------------------"
+    puts missing.join("\n").red
+  end
+end
