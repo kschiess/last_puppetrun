@@ -9,7 +9,7 @@ String.highlighter = Text::ANSIHighlighter.new
 
 # Put a list of hosts in this file that will display as yellow, not red
 # in the 'hosts that puppetd doesn't run on' list. 
-EXCEPTIONS_FILE = "~/.lpr-exceptions"
+EXCEPTIONS_FILE = File.join(ENV['HOME'], ".lpr-exceptions")
 
 # Run this on the puppet master as root to retrieve when puppet ran last 
 # on what host. 
@@ -107,16 +107,22 @@ if $0 == __FILE__
     end
   puts 
   
+  exception_printed = false
   missing = (hosts - runs.last.keys)
   unless missing.empty?
     puts "Hosts that puppet doesn't seem to run on -(BAD!)--------------------"
+    
     missing.each do |name|
       if exceptions.find { |ex_name| name =~ /^#{Regexp.escape(ex_name)}.*$/ }
         puts name.yellow
+        exception_printed = true
       else
         puts name.red
       end
     end
-    puts missing.join("\n").red
+    
+    if exception_printed
+      puts "                 (items in yellow have been defined as exceptions)"
+    end
   end
 end
