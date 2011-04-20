@@ -46,7 +46,7 @@ class PuppetRuns
   # extracts the host name from that. Otherwise returns nil. 
   #
   def parse_last_run(str)
-    if md=str.match(/puppet puppetmasterd\[\d+\]: Compiled catalog for (.+) in .* seconds/)
+    if md=str.match(/puppet puppet-master\[\d+\]: Compiled catalog for (.+) in environment \w+ in .* seconds/)
       md.captures.first
     end
   end

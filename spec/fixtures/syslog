@@ -1,16 +1,29 @@
-Jan 25 15:40:05 puppet puppetmasterd[884]: Compiled catalog for elara.example.com in 0.20 seconds
-Jan 25 15:40:13 puppet puppetmasterd[884]: Compiled catalog for keskonrix.example.com in 0.13 seconds
-Jan 25 15:40:40 puppet puppetmasterd[907]: Compiled catalog for ls2.example.com in 0.25 seconds
-Jan 25 15:40:57 puppet puppetmasterd[838]: Compiled catalog for mimas.example.com in 1.60 seconds
-Jan 25 15:41:03 puppet puppetmasterd[838]: Compiled catalog for neso.example.com in 0.07 seconds
-Jan 25 15:41:37 puppet puppetd[15852]: Retrieving plugin
-Jan 25 15:41:41 puppet puppetmasterd[907]: Compiled catalog for puppet.example.com in 1.54 seconds
-Jan 25 15:41:41 puppet puppetd[15852]: Caching catalog for puppet.example.com
-Jan 25 15:41:44 puppet puppetd[15852]: Applying configuration version '1264430500'
-Jan 25 15:41:48 puppet puppetd[15852]: Finished catalog run in 5.29 seconds
-Jan 25 15:41:50 puppet puppetmasterd[884]: Compiled catalog for hyperion.example.com in 1.45 seconds
-Jan 25 15:41:51 puppet puppetmasterd[838]: Compiled catalog for kale.example.com in 0.18 seconds
-Jan 25 15:42:57 puppet puppetmasterd[884]: Compiled catalog for deimos.example.com in 0.29 seconds
-Jan 25 15:43:14 puppet puppetmasterd[907]: Compiled catalog for gironimo.example.com in 0.14 seconds
-Jan 25 15:43:24 puppet puppetmasterd[861]: Compiled catalog for mimas.example.com in 1.94 seconds
-Jan 25 15:44:19 puppet puppetmasterd[838]: Compiled catalog for mimas.example.com in 0.27 seconds
+Apr 20 17:27:44 puppet puppet-master[13903]: Compiled catalog for ls0.example.com in environment production in 1.15 seconds
+Apr 20 16:48:55 puppet puppet-master[14006]: Reparsing /etc/puppet/puppet.conf
+Apr 20 16:48:55 puppet puppet-master[14006]: You have configuration parameter $report specified in [puppetd], which is a deprecated section. I'm assuming you meant [agent]
+Apr 20 16:48:55 puppet puppet-master[13903]: Compiled catalog for puppet.example.com in environment production in 3.09 seconds
+Apr 20 16:48:56 puppet puppet-agent[14755]: Caching catalog for puppet.example.com
+Apr 20 16:48:56 puppet puppet-master[14027]: Reparsing /etc/puppet/puppet.conf
+Apr 20 16:48:56 puppet puppet-master[14027]: You have configuration parameter $report specified in [puppetd], which is a deprecated section. I'm assuming you meant [agent]
+Apr 20 16:48:57 puppet puppet-agent[14755]: (/User[foo]) Provider useradd does not support features manages_passwords; not managing attribute password
+Apr 20 16:48:57 puppet puppet-agent[14755]: (/User[bar]) Provider useradd does not support features manages_passwords; not managing attribute password
+Apr 20 16:48:58 puppet puppet-agent[14755]: Applying configuration version '1303310934'
+Apr 20 16:48:58 puppet puppet-master[14049]: Reparsing /etc/puppet/puppet.conf
+Apr 20 16:48:58 puppet puppet-master[14049]: You have configuration parameter $report specified in [puppetd], which is a deprecated section. I'm assuming you meant [agent]
+Apr 20 16:49:02 puppet puppet-agent[14755]: Finished catalog run in 5.03 seconds
+Apr 20 16:49:15 puppet puppet-master[14006]: Unrecognised escape sequence '\;' in file /etc/puppet/manifests/classes/storage.pp at line 66
+Apr 20 16:49:17 puppet puppet-master[14006]: Compiled catalog for thor.example.com in environment production in 2.46 seconds
+Apr 20 16:49:37 puppet puppet-master[14027]: Unrecognised escape sequence '\;' in file /etc/puppet/manifests/classes/storage.pp at line 66
+Apr 20 16:49:39 puppet puppet-master[14027]: Compiled catalog for spike.example.com in environment production in 2.47 seconds
+Apr 20 16:49:40 puppet puppet-master[14006]: DEPRECATION NOTICE: Files found in modules without specifying 'modules' in file path will be deprecated in the next major release.  Please fix module 's_nagios' when no 
+0.24.x clients are present
+Apr 20 16:49:55 puppet puppet-master[14027]: Compiled catalog for ls6.example.com in environment production in 0.63 seconds
+Apr 20 16:51:09 puppet puppet-master[14049]: Denying access: Forbidden request: esa-cci.example.com(192.168.176.23) access to /file_metadata/plugins [search] at line 0
+Apr 20 16:51:09 puppet puppet-master[14049]: Forbidden request: esa-cci.example.com(192.168.176.23) access to /file_metadata/plugins [search] at line 0
+Apr 20 16:51:09 puppet puppet-master[14027]: Denying access: Forbidden request: esa-cci.example.com(192.168.176.23) access to /file_metadata/plugins [find] at line 0
+Apr 20 16:51:09 puppet puppet-master[14027]: Forbidden request: esa-cci.example.com(192.168.176.23) access to /file_metadata/plugins [find] at line 0
+Apr 20 16:51:11 puppet puppet-master[14006]: Denying access: Forbidden request: esa-cci.example.com(192.168.176.23) access to /catalog/esa-cci.example.com [find] at line 0
+Apr 20 16:51:11 puppet puppet-master[14006]: Forbidden request: esa-cci.example.com(192.168.176.23) access to /catalog/esa-cci.example.com [find] at line 0
+Apr 20 16:51:35 puppet puppet-master[13963]: Unrecognised escape sequence '\;' in file /etc/puppet/manifests/classes/storage.pp at line 66
+Apr 20 16:51:37 puppet puppet-master[13963]: Compiled catalog for ls16.example.com in environment production in 2.65 seconds
+Apr 20 16:51:44 puppet puppet-master[14006]: Compiled catalog for gardener.example.com in environment production in 0.71 seconds
