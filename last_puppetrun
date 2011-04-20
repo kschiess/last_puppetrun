@@ -27,7 +27,7 @@ class PuppetRuns
   def controlled_hosts
     run(%Q{puppetca -la}).
       lines.
-      map { |line| line.chomp[2..-1] }
+      map { |line| line.split[1] }
   end
 
   # Iterates through the current puppet master log, yielding timestamp and the

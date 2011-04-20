@@ -19,7 +19,7 @@ describe PuppetRuns do
     attr_reader :return_value
     before(:each) do
       flexmock(instance, :run => 
-        "+ cruise.geo.uzh.ch\n+ dactyl.geo.uzh.ch\n+ deimos.geo.uzh.ch\n+ dsgz.geo.uzh.ch\n+ elara.geo.uzh.ch\n+ gd1.geo.uzh.ch\n+ gd2.geo.uzh.ch\n+ gironimo.geo.uzh.ch\n+ hyperion.geo.uzh.ch\n+ kale.geo.uzh.ch\n+ keskonrix.geo.uzh.ch\n+ ldap1.geo.uzh.ch\n+ ldap2.geo.uzh.ch\n+ leda.geo.uzh.ch\n+ ls0.geo.uzh.ch\n+ ls1.geo.uzh.ch\n+ ls2.geo.uzh.ch\n+ ls3.geo.uzh.ch\n+ ls4.geo.uzh.ch\n+ ls9.geo.uzh.ch\n+ mail.geo.uzh.ch\n+ mail2.geo.uzh.ch\n+ marbles.geo.uzh.ch\n+ metis.geo.uzh.ch\n+ mimas.geo.uzh.ch\n+ moon.geo.uzh.ch\n+ mq.geo.uzh.ch\n+ neso.geo.uzh.ch\n+ olaf.geo.uzh.ch\n+ orat.geo.uzh.ch\n+ phobos.geo.uzh.ch\n+ puppet.geo.uzh.ch\n+ rooms.geo.uzh.ch\n+ roya-ve.geo.uzh.ch\n+ shermy.geo.uzh.ch\n+ tethys.geo.uzh.ch\n+ thebe.geo.uzh.ch\n+ titan.geo.uzh.ch\n+ ubuntu-build-host.geo.uzh.ch\n+ vm01.geo.uzh.ch\n+ wildnispark.geo.uzh.ch\n"
+      "+ amaltheo.geo.uzh.ch (D6:1A:1B:37:C0:C9:63:14:19:CE:10:C5:B7:92:DA:2B)\n+ anthex.geo.uzh.ch (16:46:55:D2:FD:E7:FE:3D:41:CD:C3:AC:C4:E4:47:4F)\n+ arcsda.geo.uzh.ch (EF:41:9C:93:B3:E9:DE:44:56:56:F0:12:E5:63:F3:29)\n+ bbs.geo.uzh.ch (0A:C4:48:A6:80:41:CB:9B:35:BA:5A:54:24:75:91:32)\n+ beanstalker.geo.uzh.ch (A5:25:0D:53:D6:97:CF:E4:8E:A1:AF:8F:6B:F2:8A:42)\n+ belly.geo.uzh.ch (AD:A6:3A:10:EA:F1:9F:46:A6:88:F4:79:2D:59:C2:F5)\n"
       )
       
       @return_value = instance.controlled_hosts
@@ -28,11 +28,11 @@ describe PuppetRuns do
     it "should be a list" do
       return_value.should be_an_instance_of(Array)
     end
-    it "should include 'mimas.geo.uzh.ch'" do
-      return_value.should include('mimas.geo.uzh.ch')
+    it "should include 'anthex.geo.uzh.ch'" do
+      return_value.should include('anthex.geo.uzh.ch')
     end
-    it "should include 'puppet.geo.uzh.ch'" do
-      return_value.should include('puppet.geo.uzh.ch')
+    it "should include 'belly.geo.uzh.ch'" do
+      return_value.should include('belly.geo.uzh.ch')
     end
   end
   describe "#each_log_line yields" do
