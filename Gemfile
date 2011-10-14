@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
+gem 'rake'
 gem 'activesupport'
 gem 'text-highlight'
 gem 'i18n'
